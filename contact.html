@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Ziraal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Customizing Tailwind's default theme to include 'Playfair Display' and 'Poppins' fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
+
+        /* Define custom colors using CSS variables for easy use with Tailwind's arbitrary values */
+        :root {
+            --color-dark-green: #3e5641;
+            --color-light-beige: #d9cba3;
+            --color-earthy-orange: #b35c44;
+            --color-off-white: #faf8f2; /* Very light, almost white background */
+            --color-pure-white: #ffffff; /* Pure white */
+
+            /* Footer specific color variables (matching original palette) */
+            --dark-green: #3E5641;
+            --light-cream: #D9CBA3;
+            --terracotta: #B35C44;
+            --off-white-footer: #FAF8F2; /* Renamed to avoid clash with --color-off-white */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-pure-white); /* Main page background: pure white */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            box-sizing: border-box;
+            padding-top: 6rem; /* Space for the floating header */
+        }
+
+        /* Custom styling for the header to match the image's top alignment and box-shadow */
+        .custom-header {
+            background-color: rgba(255, 255, 255, 0.9); /* Almost transparent white background for the navbar */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Lighter shadow */
+            border-radius: 9999px; /* Fully rounded corners */
+            padding: 0.75rem 2rem; /* Adjusted padding for a neat look */
+            display: flex;
+            justify-content: space-between; /* Pushes logo left, nav/button group right */
+            align-items: center;
+            position: absolute; /* Make header float */
+            top: 2rem; /* Gap from the top */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            width: calc(100% - 4rem); /* Responsive width, leaving space on sides */
+            max-width: 1200px; /* Increased max width for wider screens */
+            z-index: 50; /* Ensure it stays on top */
+            transition: border-radius 0.3s ease-in-out; /* Smooth transition for border-radius */
+        }
+
+        /* Styling for the main content area */
+        .main-content-area {
+            flex-grow: 1; /* Allows it to take available space */
+            display: flex;
+            flex-direction: column; /* Stack vertically for contact page */
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            padding: 2rem 1rem; /* Padding for mobile */
+            width: 100%; /* Ensure it takes full width */
+            max-width: 1400px; /* Increased max-width to fill more horizontal space on 16:9 */
+            margin: 0 auto; /* Center the main content area */
+        }
+
+        /* Styling for the contact form */
+        .contact-form-container {
+            background-color: var(--color-off-white);
+            border-radius: 1.5rem; /* rounded-xl */
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+            padding: 2.5rem; /* Increased padding */
+            width: 90%;
+            max-width: 700px; /* Max width for the form */
+            margin-top: 2rem; /* Space below title */
+            margin-bottom: 2rem; /* Space before map or other sections */
+            border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
+        }
+
+        .contact-form-container input,
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 0.85rem 1.25rem; /* Increased padding for input fields */
+            margin-bottom: 1.25rem; /* More space between fields */
+            border: 1px solid var(--color-light-beige);
+            border-radius: 0.5rem; /* rounded-md */
+            background-color: var(--color-pure-white);
+            font-size: 1rem;
+            color: var(--color-dark-green);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .contact-form-container input:focus,
+        .contact-form-container textarea:focus {
+            outline: none;
+            border-color: var(--color-earthy-orange);
+            box-shadow: 0 0 0 3px rgba(179, 92, 68, 0.2); /* Focus ring */
+        }
+
+        .contact-form-container textarea {
+            min-height: 120px; /* Taller textarea */
+            resize: vertical;
+        }
+
+        .contact-submit-button {
+            background-color: var(--color-earthy-orange);
+            color: var(--color-pure-white);
+            font-weight: 600; /* font-semibold */
+            padding: 0.9rem 2.2rem; /* Larger button */
+            border-radius: 0.75rem; /* rounded-lg */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            width: auto; /* Fit content */
+            display: inline-block;
+        }
+
+        .contact-submit-button:hover {
+            background-color: #a04a33; /* Slightly darker orange */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        .contact-info-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center items for smaller screens */
+            gap: 2rem; /* Gap between info blocks */
+            width: 90%;
+            max-width: 900px;
+            margin-top: 2rem;
+            text-align: center; /* Center text within info blocks for mobile */
+        }
+
+        .contact-info-block {
+            background-color: var(--color-off-white);
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            flex: 1 1 calc(50% - 1rem); /* Two columns on larger screens, stacks on small */
+            min-width: 280px; /* Minimum width for each block */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center icon and text */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-info-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.12);
+        }
+
+        .contact-info-block .icon {
+            font-size: 2.5rem; /* Larger icons */
+            color: var(--color-earthy-orange);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info-block h3 {
+            font-size: 1.5rem; /* Larger heading */
+            font-weight: 600;
+            color: var(--color-dark-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-info-block p,
+        .contact-info-block a {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .contact-info-block a {
+            color: var(--color-dark-green);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .contact-info-block a:hover {
+            color: var(--color-earthy-orange);
+        }
+
+        .map-container {
+            width: 90%;
+            max-width: 1000px; /* Wider map */
+            height: 400px; /* Taller map */
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+            margin-top: 3rem; /* Space below contact form/info */
+            margin-bottom: 3rem; /* Space before footer */
+            border: 2px solid var(--color-dark-green); /* Border around map */
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) { /* md breakpoint */
+            .custom-header {
+                padding: 0.75rem 4rem; /* Larger padding for desktop */
+                width: calc(100% - 8rem); /* More space on sides */
+            }
+            .main-content-area {
+                padding: 4rem; /* Larger padding for desktop */
+            }
+            /* Text sizes for md */
+            .main-content-area h2 {
+                font-size: 4rem; /* Adjusted for contact page */
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+            .contact-info-section {
+                flex-wrap: nowrap; /* Prevent wrapping on md screens */
+                justify-content: space-between; /* Distribute items */
+                text-align: left; /* Align text left within info blocks */
+            }
+            .contact-info-block {
+                flex: 1 1 30%; /* Three columns on larger screens */
+            }
+        }
+
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .custom-header {
+                padding: 0.75rem 6rem; /* Even larger padding for large desktop */
+                max-width: 1200px; /* Even wider header */
+            }
+            .main-content-area {
+                padding: 6rem; /* Even larger padding for large desktop */
+            }
+            /* Text sizes for lg */
+            .main-content-area h2 {
+                font-size: 5rem; /* Adjusted for contact page */
+            }
+        }
+
+        /* FOOTER CSS STARTS HERE */
+        .footer {
+            background-color: var(--dark-green);
+            color: var(--off-white-footer);
+            padding: 30px 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center content when less columns */
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: auto;
+        }
+
+        /* New container for quick links and contact info - this is key for reduced gap */
+        .footer-info-group {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            gap: 20px; /* Gap between quick links and contact info */
+            justify-content: center; /* Center them within their group */
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 180px;
+            max-width: 280px;
+        }
+
+        .footer-section h3 {
+            color: var(--light-cream);
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 6px;
+        }
+
+        .footer-section a {
+            color: var(--off-white-footer);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--terracotta);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .social-icons a {
+            font-size: 22px;
+            color: var(--light-cream);
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--terracotta);
+        }
+
+        .footer-bottom {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-cream);
+        }
+
+        .footer-bottom a {
+            color: var(--light-cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--terracotta);
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 25px 15px;
+            }
+            .footer-info-group {
+                flex-direction: column; /* Stack on small screens */
+                gap: 15px; /* Adjust gap for stacked sections */
+                align-items: center; /* Center sections when stacked */
+            }
+            .footer-section {
+                margin-bottom: 0; /* Remove margin from individual sections when grouped */
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        /* FOOTER CSS ENDS HERE */
+
+        /* Mobile navigation specific styles */
+        .mobile-nav-hidden {
+            display: none; /* Hidden by default on small screens */
+        }
+
+        .mobile-nav-visible {
+            display: flex; /* Flexbox for column layout when visible */
+            flex-direction: column;
+            width: calc(100% - 4rem); /* Match header width */
+            background-color: var(--color-pure-white); /* Match header background */
+            position: absolute; /* Position below header */
+            top: calc(100% + 0.5rem); /* Place it right below the header with a small gap */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            padding: 1rem 0;
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            z-index: 49; /* Slightly lower than header but still above content */
+        }
+
+        .mobile-nav-visible a {
+            padding: 0.75rem 1.5rem; /* Padding for each link */
+            text-align: center;
+            color: var(--color-dark-green);
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 500; /* font-medium */
+            transition: background-color 0.2s;
+        }
+
+        .mobile-nav-visible a:hover {
+            background-color: var(--color-off-white);
+        }
+
+        /* Adjust header layout for mobile when menu is open */
+        .header-mobile-open {
+            border-bottom-left-radius: 0; /* Remove bottom-left radius */
+            border-bottom-right-radius: 0; /* Remove bottom-right radius */
+            box-shadow: none; /* Remove shadow to blend with dropdown */
+        }
+    </style>
+</head>
+<body>
+    <header class="custom-header">
+        <div class="flex flex-col items-start">
+            <h1 class="text-2xl font-bold" style="font-family: 'Playfair Display', serif; color: var(--color-dark-green);">
+                ZIRAAL
+            </h1>
+        </div>
+
+        <div class="flex items-center space-x-8">
+            <nav id="desktop-nav" class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200">Home</a>
+                <a href="about.html" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200">About Us</a>
+                <a href="donate.html" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200">Donate</a>
+                <a href="contact.html" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200">Contact Us</a>
+            </nav>
+
+            <a href="getinvolved.html" class="hidden md:block px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105" style="background-color: var(--color-earthy-orange);">
+                Get Involved
+            </a>
+        </div>
+
+        <button id="mobile-menu-button" class="md:hidden text-gray-700 text-2xl">
+            &#9776; </button>
+
+        <nav id="mobile-nav" class="mobile-nav-hidden">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="donate.html">Donate</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="getinvolved.html" class="px-6 py-3 rounded-full font-semibold text-white mt-4 mx-auto" style="background-color: var(--color-earthy-orange);">Get Involved</a>
+        </nav>
+    </header>
+
+    <main class="main-content-area flex flex-col items-center justify-center pt-24 pb-12">
+        <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 text-center" style="font-family: 'Playfair Display', serif; color: var(--color-dark-green);">
+            Get in Touch
+        </h2>
+        <p class="text-lg md:text-xl text-gray-700 mb-12 text-center max-w-3xl">
+            We'd love to hear from you! Whether you have a question, a suggestion, or just want to say hello, feel free to reach out.
+        </p>
+
+        <div class="contact-form-container">
+            <form action="#" method="POST" class="w-full">
+                <div class="mb-6">
+                    <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                </div>
+                <div class="mb-6">
+                    <label for="subject" class="block text-gray-700 text-sm font-medium mb-2">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Inquiry about donations" required>
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Message</label>
+                    <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+                </div>
+                <button type="submit" class="contact-submit-button">
+                    Send Message
+                </button>
+            </form>
+        </div>
+
+        <div class="contact-info-section">
+            <div class="contact-info-block">
+                <i class="fas fa-envelope icon"></i>
+                <h3>Email Us</h3>
+                <p>Feel free to send us an email at any time.</p>
+                <a href="mailto:ziraalfoundation@gmail.com">ziraalfoundation@gmail.com</a>
+            </div>
+            <div class="contact-info-block">
+                <i class="fas fa-phone-alt icon"></i>
+                <h3>Call Us</h3>
+                <p>Reach us directly by phone during working hours.</p>
+                <a href="tel:+923303341449">+923303341449</a>
+            </div>
+            <div class="contact-info-block">
+                <i class="fas fa-share-alt icon"></i>
+                <h3>Follow Us</h3>
+                <p>Stay connected through our social media channels.</p>
+                <div class="social-icons justify-center mt-2">
+                    <a href="https://instagram.com/ziraal.pk/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.258169123456!2d67.04230231505378!3d24.85871198405029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4m6!3e0!4m3!3m2!1d24.858852!2d67.045084!4m0!5e0!3m2!1sen!2spk!4v1678888888888!5m2!1sen!2spk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-info-group">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: <a href="mailto:ziraalfoundation@gmail.com">ziraalfoundation@gmail.com</a></p>
+                <p>Phone: <a href="tel:+923303341449">+923303341449</a></p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/ziraal.pk/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ziraal. All rights reserved.</p>
+            <p>Developed by <a href="https://www.instagram.com/hasanemu" target="_blank">@hasanemu</a></p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileNav = document.getElementById('mobile-nav');
+            const header = document.querySelector('.custom-header');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('mobile-nav-hidden');
+                mobileNav.classList.toggle('mobile-nav-visible');
+                header.classList.toggle('header-mobile-open');
+            });
+
+            // Optional: Close mobile menu when a link is clicked (for better UX)
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileNav.classList.contains('mobile-nav-visible')) {
+                        mobileNav.classList.remove('mobile-nav-visible');
+                        mobileNav.classList.add('mobile-nav-hidden');
+                        header.classList.remove('header-mobile-open');
+                    }
+                });
+            });
+
+            console.log('Website design loaded successfully!');
+        });
+    </script>
+</body>
+</html>
