@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Import Google Fonts - Playfair Display and Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
+
+        /* Define custom colors using CSS variables (copied from your contact.html for consistency) */
+        :root {
+            --color-dark-green: #3e5641;
+            --color-light-beige: #d9cba3;
+            --color-earthy-orange: #b35c44;
+            --color-off-white: #faf8f2; /* Very light, almost white background */
+            --color-pure-white: #ffffff; /* Pure white */
+
+            /* Footer specific color variables (matching original palette) - though not used on thank_you, good for consistency */
+            --dark-green: #3E5641;
+            --light-cream: #D9CBA3;
+            --terracotta: #B35C44;
+            --off-white-footer: #FAF8F2;
+        }
+
+        /* Basic Body Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: white; /* Use off-white for a softer background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            text-align: center;
+            padding: 2rem 1rem; /* Responsive padding */
+            box-sizing: border-box;
+            color: var(--color-dark-green); /* Default text color */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Thank You Card Container */
+        .thank-you-card {
+            background-color: var(--color-pure-white);
+            border-radius: 1.5rem; /* Large rounded corners */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05); /* Softer, deeper shadow */
+            padding: 3rem 2rem; /* Generous padding */
+            max-width: 650px; /* Max width for the card */
+            width: 90%; /* Responsive width */
+            margin: auto; /* Center the card */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(20px); /* Initial state for animation */
+            opacity: 0; /* Initial state for animation */
+            animation: fadeInScaleUp 0.7s ease-out forwards; /* Apply animation */
+            border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
+        }
+
+        /* Animation for the card */
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Checkmark Icon Styling */
+        .checkmark-icon {
+            font-size: 4rem; /* Larger icon */
+            color: var(--color-earthy-orange); /* Your accent color */
+            margin-bottom: 1.5rem; /* Adjusted space below the icon to the paragraph */
+            animation: bounceIn 0.8s ease-out forwards; /* Checkmark animation */
+            animation-delay: 0.3s; /* Delay after card appears */
+            opacity: 0; /* Initial state for animation */
+        }
+
+        /* Checkmark bounce animation */
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.15rem; /* Slightly larger text */
+            color: #555; /* Softer dark gray */
+            margin-bottom: 5rem; /* *** INCREASED GAP FOR DESKTOP *** */
+            line-height: 1.6;
+        }
+
+        /* Home Button Styling */
+/* Home Button Styling */
+.home-button {
+    background-color: var(--color-earthy-orange);
+    color: var(--color-pure-white);
+    font-weight: 600;
+    padding: 1rem 2.5rem; /* Larger button padding */
+    border-radius: 0.75rem; /* Rounded corners */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle button shadow */
+    margin-top: 2rem; /* <--- Add this line for increased gap */
+}
+
+
+        .home-button:hover {
+            background-color: #a04a33; /* Slightly darker orange */
+            transform: translateY(-3px); /* More pronounced lift on hover */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .thank-you-card {
+                padding: 2.5rem 1.5rem;
+                border-radius: 1rem;
+            }
+            .checkmark-icon {
+                font-size: 3rem;
+            }
+            p {
+                font-size: 1rem;
+                margin-bottom: 4rem; /* *** INCREASED GAP FOR MOBILE *** */
+            }
+            .home-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-card">
+        <i class="fas fa-check-circle checkmark-icon"></i>
+        <p>Thank you for reaching out to Ziraal. We have received your message and will get back to you as soon as possible.</p>
+        <a href="index.html" class="home-button">Return to Home Page</a>
+    </div>
+</body>
+</html>
