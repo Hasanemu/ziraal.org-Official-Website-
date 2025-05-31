@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
+            background-color: #f0f0f0; /* A light, soft background for contrast */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start of the cross axis (top) */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            padding-top: 2rem; /* Initial gap from the top */
+            box-sizing: border-box;
+        }
+        /* Custom styles for the header if needed, though Tailwind covers most */
+        .header-container {
+            /* Ensuring responsiveness and centering */
+            width: 90%; /* Responsive width */
+            max-width: 500px; /* Decreased max width for a more compact header */
+        }

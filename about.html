@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Ziraal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Customizing Tailwind's default theme to include 'Playfair Display' and 'Poppins' fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
+
+        /* Define custom colors using CSS variables for easy use with Tailwind's arbitrary values */
+        :root {
+            --color-dark-green: #3e5641;
+            --color-light-beige: #d9cba3;
+            --color-earthy-orange: #b35c44;
+            --color-off-white: #faf8f2;
+            --color-pure-white: #ffffff;
+
+            /* Footer specific color variables (matching original palette) */
+            --dark-green: #3E5641;
+            --light-cream: #D9CBA3;
+            --terracotta: #B35C44;
+            --off-white-footer: #FAF8F2; /* Renamed to avoid clash with --color-off-white */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-pure-white); /* Main page background: pure white */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            box-sizing: border-box;
+            padding-top: 6rem; /* Space for the floating header */
+        }
+
+        /* Custom styling for the header to match the main site's top alignment and box-shadow */
+        .custom-header {
+            background-color: rgba(255, 255, 255, 0.9); /* Almost transparent white background for the navbar */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Lighter shadow */
+            border-radius: 9999px; /* Fully rounded corners */
+            padding: 0.75rem 2rem; /* Adjusted padding for a neat look */
+            display: flex;
+            justify-content: space-between; /* Pushes logo left, nav/button group right */
+            align-items: center;
+            position: absolute; /* Make header float */
+            top: 2rem; /* Gap from the top */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            width: calc(100% - 4rem); /* Responsive width, leaving space on sides */
+            max-width: 1200px; /* Increased max width for wider screens */
+            z-index: 50; /* Ensure it stays on top */
+            transition: border-radius 0.3s ease-in-out; /* Smooth transition for border-radius */
+        }
+
+        /* Styling for the main content area */
+        .main-content-area {
+            flex-grow: 1; /* Allows it to take available space */
+            display: flex;
+            flex-direction: column; /* Stack sections vertically */
+            align-items: center; /* Center content horizontally */
+            padding: 2rem 1rem; /* Padding for mobile */
+            width: 100%; /* Ensure it takes full width */
+            max-width: 1400px; /* Increased max-width to fill more horizontal space on 16:9 */
+            margin: 0 auto; /* Center the main content area */
+        }
+
+        /* Styling for the decorative shape for the image */
+        .decorative-shape {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%; /* Aspect ratio for a wider shape */
+            max-width: 800px; /* Max width for the shape container */
+            margin: 2rem auto; /* Center and add some margin */
+        }
+
+        .decorative-shape::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-light-beige); /* Use light beige for the shape */
+            border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%; /* Different organic shape */
+            transform: rotate(-10deg); /* Slight rotation */
+            z-index: 10;
+        }
+
+        .decorative-shape img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(10deg); /* Counter-rotate image */
+            width: 90%; /* Image size relative to container */
+            height: 90%;
+            object-fit: cover;
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 20;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) { /* md breakpoint */
+            .custom-header {
+                padding: 0.75rem 4rem;
+                width: calc(100% - 8rem);
+            }
+            .main-content-area {
+                padding: 4rem;
+            }
+            .decorative-shape {
+                max-width: 900px;
+            }
+            .decorative-shape::before {
+                border-radius: 45% 55% 55% 45% / 55% 45% 55% 45%;
+                transform: rotate(-5deg);
+            }
+            .decorative-shape img {
+                transform: translate(-50%, -50%) rotate(5deg);
+            }
+
+            /* Text sizes for md */
+            .about-heading {
+                font-size: 4.5rem;
+            }
+            .about-paragraph {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .custom-header {
+                padding: 0.75rem 6rem;
+                max-width: 1200px;
+            }
+            .main-content-area {
+                padding: 6rem;
+            }
+            .decorative-shape {
+                max-width: 1000px;
+            }
+            .decorative-shape::before {
+                border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+                transform: rotate(0deg);
+            }
+            .decorative-shape img {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            /* Text sizes for lg */
+            .about-heading {
+                font-size: 5.5rem;
+            }
+            .about-paragraph {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* FOOTER CSS (Stored from index.html's current footer) */
+        .footer {
+            background-color: var(--dark-green);
+            color: var(--off-white-footer);
+            padding: 30px 20px; /* Adjusted padding */
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center content when less columns */
+            align-items: flex-start;
+            gap: 20px; /* Adjusted gap */
+            margin-top: auto;
+        }
+
+        /* New container for quick links and contact info - this is key for reduced gap */
+        .footer-info-group {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            gap: 20px; /* Gap between quick links and contact info */
+            justify-content: center; /* Center them within their group */
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 180px; /* Adjusted min-width */
+            max-width: 280px; /* Adjusted max-width */
+        }
+
+        .footer-section h3 {
+            color: var(--light-cream);
+            margin-bottom: 12px; /* Adjusted margin */
+            font-size: 17px; /* Adjusted font size */
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 6px; /* Adjusted margin */
+        }
+
+        .footer-section a {
+            color: var(--off-white-footer);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--terracotta);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px; /* Adjusted gap */
+            margin-top: 12px; /* Adjusted margin */
+        }
+
+        .social-icons a {
+            font-size: 22px; /* Adjusted icon size */
+            color: var(--light-cream);
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--terracotta);
+        }
+
+        .footer-bottom {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px; /* Adjusted margin */
+            padding-top: 15px; /* Adjusted padding */
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-cream);
+        }
+
+        .footer-bottom a {
+            color: var(--light-cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--terracotta);
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 25px 15px; /* Adjusted padding for mobile */
+            }
+            .footer-info-group {
+                flex-direction: column; /* Stack on small screens */
+                gap: 15px; /* Adjust gap for stacked sections */
+                align-items: center; /* Center sections when stacked */
+            }
+            .footer-section {
+                margin-bottom: 0; /* Remove margin from individual sections when grouped */
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        /* FOOTER CSS ENDS HERE */
+
+        /* Mobile navigation specific styles */
+        .mobile-nav-hidden {
+            display: none; /* Hidden by default on small screens */
+        }
+
+        .mobile-nav-visible {
+            display: flex; /* Flexbox for column layout when visible */
+            flex-direction: column;
+            width: calc(100% - 4rem); /* Match header width */
+            background-color: var(--color-pure-white); /* Match header background */
+            position: absolute; /* Position below header */
+            top: calc(100% + 0.5rem); /* Place it right below the header with a small gap */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            padding: 1rem 0;
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            z-index: 49; /* Slightly lower than header but still above content */
+        }
+
+        .mobile-nav-visible a {
+            padding: 0.75rem 1.5rem; /* Padding for each link */
+            text-align: center;
+            color: var(--color-dark-green);
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 500; /* font-medium */
+            transition: background-color 0.2s;
+        }
+
+        .mobile-nav-visible a:hover {
+            background-color: var(--color-off-white);
+        }
+
+        /* Adjust header layout for mobile when menu is open */
+        .header-mobile-open {
+            border-bottom-left-radius: 0; /* Remove bottom-left radius */
+            border-bottom-right-radius: 0; /* Remove bottom-right radius */
+            box-shadow: none; /* Remove shadow to blend with dropdown */
+        }
+    </style>
+</head>
+<body>
+    <header class="custom-header">
+        <div class="flex flex-col items-start">
+            <h1 class="text-2xl font-bold" style="font-family: 'Playfair Display', serif; color: var(--color-dark-green);">
+                ZIRAAL
+            </h1>
+        </div>
+
+        <div class="flex items-center space-x-8">
+            <nav id="desktop-nav" class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200">Home</a>
+                <a href="about.html" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200">About Us</a>
+                <a href="donate.html" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200">Donate</a>
+                <a href="contact.html" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200">Contact Us</a>
+            </nav>
+
+            <a href="getinvolved.html" class="hidden md:block px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105" style="background-color: var(--color-earthy-orange);">
+                Get Involved
+            </a>
+        </div>
+
+        <button id="mobile-menu-button" class="md:hidden text-gray-700 text-2xl">
+            &#9776; </button>
+
+        <nav id="mobile-nav" class="mobile-nav-hidden">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="donate.html">Donate</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="getinvolved.html" class="px-6 py-3 rounded-full font-semibold text-white mt-4 mx-auto" style="background-color: var(--color-earthy-orange);">Get Involved</a>
+        </nav>
+    </header>
+
+    <main class="main-content-area">
+        <section class="text-center md:text-left w-full max-w-4xl mx-auto mb-12">
+            <h1 class="about-heading text-5xl font-bold leading-tight mb-6" style="font-family: 'Playfair Display', serif; color: var(--color-dark-green);">
+                Our Story, Our Purpose
+            </h1>
+            <p class="about-paragraph text-lg text-gray-700 mb-4">
+                At Ziraal, our journey began with a simple yet profound belief: that every individual deserves a chance to thrive, regardless of their circumstances. Founded on principles of compassion and community, we strive to create a nurturing environment where hope blossoms and futures are built.
+            </p>
+            <p class="about-paragraph text-lg text-gray-700 mb-4">
+                Our dedicated team works tirelessly to implement sustainable initiatives that directly impact the lives of vulnerable children and families. From providing essential resources to fostering educational opportunities, we are committed to empowering individuals and strengthening the fabric of our society.
+            </p>
+            <p class="about-paragraph text-lg text-gray-700">
+                We believe in the power of collective action and invite you to join us in making a tangible difference. Together, we can extend a hand of care and cultivate a brighter, more equitable world for all.
+            </p>
+        </section>
+
+        <section class="w-full flex justify-center items-center">
+            <div class="decorative-shape">
+                <img src="Tabeer.webp" alt="Our Community Image">
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-info-group">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: <a href="mailto:ziraalfoundation@gmail.com">ziraalfoundation@gmail.com</a></p>
+                <p>Phone: <a href="tel:+923303341449">+923303341449</a></p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/ziraal.pk/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ziraal. All rights reserved.</p>
+            <p>Developed by <a href="https://www.instagram.com/hasanemu" target="_blank">@hasanemu</a></p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileNav = document.getElementById('mobile-nav');
+            const header = document.querySelector('.custom-header');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('mobile-nav-hidden');
+                mobileNav.classList.toggle('mobile-nav-visible');
+                header.classList.toggle('header-mobile-open');
+            });
+
+            // Close mobile menu when a link is clicked (for better UX)
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileNav.classList.contains('mobile-nav-visible')) {
+                        mobileNav.classList.remove('mobile-nav-visible');
+                        mobileNav.classList.add('mobile-nav-hidden');
+                        header.classList.remove('header-mobile-open');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
