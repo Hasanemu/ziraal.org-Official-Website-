@@ -101,6 +101,42 @@
         }
 
         /* Responsive adjustments */
+        @media (max-width: 767px) { /* Styles specifically for mobile */
+            .main-content-area {
+                /* Adjust padding for a bit more breathing room on the sides */
+                padding: 2rem 1.5rem; /* Increased horizontal padding for mobile */
+            }
+
+            .main-content-area section.text-left {
+                text-align: center; /* Center align text on mobile */
+                margin-bottom: 2rem; /* Add some space below the text section */
+            }
+
+            .main-content-area h2 {
+                font-size: 2.5rem; /* Slightly smaller font for mobile h2 */
+                line-height: 1.2; /* Adjust line height for mobile h2 */
+                /* Remove br tag for better flow on smaller screens */
+                white-space: normal; /* Ensure text wraps naturally */
+                margin-bottom: 1rem; /* Less margin for h2 on mobile */
+            }
+
+            .main-content-area p {
+                font-size: 1rem; /* Smaller font for paragraph on mobile */
+                margin-bottom: 1.5rem; /* Less margin for paragraph on mobile */
+            }
+
+            .main-content-area a.inline-block {
+                /* Center the button on mobile by making it a block element and using auto margins */
+                display: block; /* Make the button take full width to allow auto margins to center */
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 180px; /* Limit button width for better appearance when centered */
+                padding: 0.8rem 1.5rem; /* Adjust button padding for mobile */
+                font-size: 0.9rem; /* Adjust button font size for mobile */
+            }
+        }
+
+
         @media (min-width: 768px) { /* md breakpoint */
             .custom-header {
                 padding: 0.75rem 4rem; /* Larger padding for desktop */
@@ -360,7 +396,7 @@
 
         <section class="w-full md:w-1/2 flex justify-center items-center">
             <div class="image-container">
-                <img src="Orphans.jpg"Orphan Care Image">
+                <img src="Orphans.jpg" alt="Orphan Care Image">
             </div>
         </section>
     </main>
