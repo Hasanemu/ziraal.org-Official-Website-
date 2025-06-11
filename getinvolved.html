@@ -246,13 +246,13 @@
             color: var(--color-dark-green);
             font-size: 1.125rem; /* text-lg */
             font-weight: 500; /* font-medium */
-            transition: all 0.2s ease-in-out; /* Changed to all for smooth transform */
+            transition: background-color 0.2s ease-in-out; /* Only background color transition */
         }
 
         .mobile-nav-visible a:hover {
             background-color: var(--color-off-white);
-            color: var(--color-earthy-orange); /* Highlight text color on hover */
-            transform: scale(1.02); /* Slight scale on hover for mobile */
+            /* Removed: color: var(--color-earthy-orange); */
+            /* Removed: transform: scale(1.02); */
         }
 
         /* Adjust header layout for mobile when menu is open */
@@ -273,10 +273,11 @@
 
         <div class="flex items-center space-x-8">
             <nav id="desktop-nav" class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out hover:text-[var(--color-earthy-orange)] hover:scale-105">Home</a>
-                <a href="about.html" class="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out hover:text-[var(--color-earthy-orange)] hover:scale-105">About Us</a>
-                <a href="donate.html" class="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out hover:text-[var(--color-earthy-orange)] hover:scale-105">Donate</a>
-                <a href="contact.html" class="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out hover:text-[var(--color-earthy-orange)] hover:scale-105">Contact Us</a>
+                <!-- Removed hover effects from desktop nav links -->
+                <a href="index.html" class="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out">Home</a>
+                <a href="about.html" class="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out">About Us</a>
+                <a href="donate.html" class="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out">Donate</a>
+                <a href="contact.html" class="text-lg font-medium text-gray-700 transition-all duration-300 ease-in-out">Contact Us</a>
             </nav>
 
             <a href="getinvolved.html" class="hidden md:block px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105" style="background-color: var(--color-earthy-orange);">
